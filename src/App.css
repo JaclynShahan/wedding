@@ -31,3 +31,26 @@
     transform: rotate(360deg);
   }
 }
+.routeBar {
+  background: #181817;
+  overflow: hidden;
+}
+
+.routeBar a {
+  float: left;
+  display: block;
+  color: whitesmoke;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.routeBar:active {
+  background-color: #343534;
+  color: rgb(14, 13, 13);
+}
+.routeBar a:hover {
+  background-color: rgb(55, 56, 56);
+  color: rgb(252, 240, 240);
+}

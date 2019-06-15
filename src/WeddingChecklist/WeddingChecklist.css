@@ -1,0 +1,53 @@
+.inputStyle {
+    width: 25vw;
+    height: 20px;
+    padding: 10px 10px;
+    margin: 10px 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.submit {
+    height: 40px;
+    width: 80px;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.tableStyle {
+    table-layout: fixed;
+    width: 95%;
+    position: fixed;
+    border: 2px inset rgb(34, 34, 59);
+}
+
+.tableStyle td {
+    text-overflow: ellipsis;
+    border: 1px solid  rgb(34, 34, 59);
+}
+
+.tableStyle th {
+    text-align: left;
+    padding: 5px 10px;
+    border-spacing: 5px;
+    background-color: lightblue;
+    color: black;
+    border: 2px inset rgb(34, 34, 59);
+}
+
+.row1 {
+    width: 7%;
+}
+
+.row5 {
+    width: 10%;
+}
+
+.row3 {
+    width: 12%;
+}
+
+.row2 {
+    width: 25%;
+}
