@@ -15,21 +15,18 @@ class ChecklistTable extends Component {
     console.log(`checked = ${e.target.checked}`);
   }
     render() {
-        const tableRows = this.props.list.map((listArr, indexPoint) => {
+        const tableRows = this.props.item.map((listitem, indexPoint) => {
             return (
             <tr key={indexPoint}>
-               <Popconfirm
-            onConfirm={() => this.props.onDelete(listArr.id)}
-            title='Are you sure?'
-          ></Popconfirm>
-           <td><button><Icon type="delete" /></button></td>
-            <td>{listArr.checklistItem}</td>
-            <td>{listArr.cost}</td>
-            <td>{listArr.notes}</td>
+           <td><button onClick={() => this.props.onDelete(listitem.id)}><Icon type="delete" /></button></td>
+            <td>{listitem.checklist_item}</td>
+            <td>{listitem.cost}</td>
+            <td>{listitem.notes}</td>
           <td><Checkbox onChange={e => this.onChange(e)}></Checkbox></td>
             </tr>
-            
-            )}
+           
+            )},
+            console.log(this.props.item)
         )
         return(
           <table className="tableStyle">

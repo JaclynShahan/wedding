@@ -8,7 +8,7 @@ class WeddingChecklist extends Component {
     constructor() {
         super()
         this.state = {
-            checklistItem: '',
+            checklist_item: '',
             cost: '',
             notes: '',
            items: []
@@ -16,13 +16,13 @@ class WeddingChecklist extends Component {
         this.addListItems = this.addListItems.bind(this)
     }
      componentDidMount = () => {
-         Axios.get(`/api/getItems`).then(resp => {
+         Axios.get(`/api/getItem`).then(resp => {
            console.log(resp)
          this.setState({ items: resp.data })
         })
       }
       onDelete = i => {
-        Axios.delete(`/api/deleteItems/${i}`).then(resp => {
+        Axios.delete(`/api/deleteItem/${i}`).then(resp => {
           console.log(resp)
           this.setState({ items: resp.data })
         })
@@ -30,12 +30,12 @@ class WeddingChecklist extends Component {
 
       addListItems = e => {
         e.preventDefault()
-        Axios.post('/api/addItems', {
-          item: {
-           checklistItem: this.state.checklistItem,
+        Axios.post('/api/createItem', {
+        
+           checklist_item: this.state.checklist_item,
            cost: this.state.cost,
            notes: this.state.notes
-          }
+          
         }).then(resp => {
           this.onClear()
           console.log(resp)
@@ -44,13 +44,13 @@ class WeddingChecklist extends Component {
       }
     onClear = () => {
         this.setState({
-            checklistItem: '',
+            checklist_item: '',
             cost: '',
             notes: ''
         })
     }
-    updateChecklistItem (checklistItem) {
-      this.setState({ checklistItem })
+    updateChecklistItem (checklist_item) {
+      this.setState({ checklist_item })
     }
     updateCost (cost) {
       this.setState({cost})
@@ -63,13 +63,13 @@ class WeddingChecklist extends Component {
     render() {
         console.log(this.props)
         console.log(this.state)
-        const { checklistItem, cost, notes } = this.state
+        const { checklist_item, cost, notes } = this.state
         return(
             <div>
             <form>
             <input
             className="inputStyle"
-            value={checklistItem}
+            value={checklist_item}
             onChange={e => this.updateChecklistItem(e.target.value)}
             placeholder="Checklist Item"
             />
@@ -90,7 +90,7 @@ class WeddingChecklist extends Component {
             <Divider />
             <ChecklistTable
             onDelete={this.onDelete} 
-            list={this.state.items}
+            item={this.state.items}
             />
             </form>
             </div>
