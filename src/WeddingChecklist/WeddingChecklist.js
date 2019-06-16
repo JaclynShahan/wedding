@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Divider } from 'antd';
 import ChecklistTable from './ChecklistTable.js';
 import './WeddingChecklist.css';
-import axios from 'axios';
+import Axios from 'axios';
 
 class WeddingChecklist extends Component {
     constructor() {
@@ -11,38 +11,37 @@ class WeddingChecklist extends Component {
             checklistItem: '',
             cost: '',
             notes: '',
-           listArr: []
+           items: []
         }
+        this.addListItems = this.addListItems.bind(this)
     }
-    componentDidMount = () => {
-        axios.get(`/api/getItem`).then(resp => {
+     componentDidMount = () => {
+         Axios.get(`/api/getItems`).then(resp => {
+           console.log(resp)
+         this.setState({ items: resp.data })
+        })
+      }
+      onDelete = i => {
+        Axios.delete(`/api/deleteItems/${i}`).then(resp => {
           console.log(resp)
-          this.setState({ listArr: resp.data })
+          this.setState({ items: resp.data })
         })
       }
 
-    addItems = e => {
+      addListItems = e => {
         e.preventDefault()
-    this.setState({
-        checklistItem: '',
-         cost: '',
-         notes: '',
-         listArr: [...this.state.listArr, this.state.checklistItem, this.state.cost, this.state.notes]
-    })
-    //     axios.post('/api/createItem', {
-           
-    //         checklistItem: this.state.checklistItem,
-    //         cost: this.state.cost,
-    //         notes: this.state.notes,
-    //        // listArr: this.state.listArr
-          
-    //     }).then(resp => {
-    //       this.onClear()
-    //       console.log(resp)
-    //       this.setState({ listArr: resp.data })
-    //     })
-    //   }
-    }
+        Axios.post('/api/addItems', {
+          item: {
+           checklistItem: this.state.checklistItem,
+           cost: this.state.cost,
+           notes: this.state.notes
+          }
+        }).then(resp => {
+          this.onClear()
+          console.log(resp)
+          this.setState({ items: resp.data })
+        })
+      }
     onClear = () => {
         this.setState({
             checklistItem: '',
@@ -50,40 +49,50 @@ class WeddingChecklist extends Component {
             notes: ''
         })
     }
-    textChangeHandler = (e, stateProperty) => {
-        this.setState({ [stateProperty]: e.target.value })
-      }
+    updateChecklistItem (checklistItem) {
+      this.setState({ checklistItem })
+    }
+    updateCost (cost) {
+      this.setState({cost})
+    }
+    updateNotes (notes) {
+      this.setState({notes})
+    }
+ 
 
     render() {
         console.log(this.props)
         console.log(this.state)
+        const { checklistItem, cost, notes } = this.state
         return(
             <div>
-            <form onSubmit={e => this.addItems(e)}>
+            <form>
             <input
             className="inputStyle"
-            value={this.state.checklistItem}
-            onChange={e => this.textChangeHandler(e, 'checklistItem')}
+            value={checklistItem}
+            onChange={e => this.updateChecklistItem(e.target.value)}
             placeholder="Checklist Item"
             />
             <input
             className="inputStyle"
-            value={this.state.cost}
-            onChange={e => this.textChangeHandler(e, 'cost')}
+            value={cost}
+            onChange={e => this.updateCost(e.target.value)}
             placeholder="Cost"
             />
             <input
             className="inputStyle"
-            value={this.state.notes}
-            onChange={e => this.textChangeHandler(e, 'notes')}
+            value={notes}
+            onChange={e => this.updateNotes(e.target.value)}
             placeholder="Notes"
             />
-            <button className="submit" type="submit">Submit</button>
-            </form>
+            <button onClick={e => this.addListItems(e)} className="submit" type="submit">Submit</button>
+          
             <Divider />
-            <ChecklistTable 
-            listArr={this.state.listArr}
+            <ChecklistTable
+            onDelete={this.onDelete} 
+            list={this.state.items}
             />
+            </form>
             </div>
         )
     }

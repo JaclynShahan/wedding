@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Checkbox, Icon} from 'antd';
+import {Checkbox, Icon, Popconfirm} from 'antd';
 import './WeddingChecklist.css';
 
 
@@ -15,10 +15,14 @@ class ChecklistTable extends Component {
     console.log(`checked = ${e.target.checked}`);
   }
     render() {
-        const tableRows = this.props.listArr.map((listArr, indexPoint) => {
+        const tableRows = this.props.list.map((listArr, indexPoint) => {
             return (
             <tr key={indexPoint}>
-           <td><button><Icon type="edit" /></button></td>
+               <Popconfirm
+            onConfirm={() => this.props.onDelete(listArr.id)}
+            title='Are you sure?'
+          ></Popconfirm>
+           <td><button><Icon type="delete" /></button></td>
             <td>{listArr.checklistItem}</td>
             <td>{listArr.cost}</td>
             <td>{listArr.notes}</td>
@@ -31,7 +35,7 @@ class ChecklistTable extends Component {
           <table className="tableStyle">
               <tbody>
                   <tr>
-                      <th className="row1">Edit</th>
+                      <th className="row1">Delete</th>
                     <th className="row2">Wedding Item</th>
                     <th className="row3">Estimated Cost</th>
                     <th>Notes</th>
