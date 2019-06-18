@@ -66,7 +66,7 @@ class WeddingChecklist extends Component {
         const { checklist_item, cost, notes } = this.state
         return(
             <div>
-            <form>
+            <form onSubmit={e => this.addListItems(e)}>
             <input
             className="inputStyle"
             value={checklist_item}
