@@ -1,0 +1,1 @@
+DELETE FROM songlist WHERE song_id = $1

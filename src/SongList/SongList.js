@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import './SongList.css';
+import SongListTable from './SongListTable.js';
 
 
 class SongList extends Component {
@@ -43,6 +44,12 @@ class SongList extends Component {
      updateTitle (title) {
          this.setState({title})
      }
+     deleteSong = i => {
+        Axios.delete(`/api/deleteSong/${i}`).then(resp => {
+            console.log(resp)
+            this.setState({ songs: resp.data })
+          })
+     }
     
     render() {
         console.log(this.props)
@@ -64,6 +71,12 @@ class SongList extends Component {
                     onChange={e => this.updateTitle(e.target.value)}
                     />
                     <button className="enterButton" onClick={e => this.addSong(e)}>Submit</button>
+
+                    <SongListTable 
+                    onDelete={this.deleteSong}
+                    titles={this.state.songs}
+                    
+                    />
                 </form>
             </div>
             

@@ -69,6 +69,13 @@ app.delete('/api/deleteItem/:id', (req, res) => {
         res.status(200).send('deleted')
     })
 })
+app.delete('/api/deleteSong/:id', (req, res) => {
+    const dbInstance = req.app.get('db')
+    dbInstance.deleteSong(req.params.id).then(() => {
+        console.log('deleted')
+        res.status(200).send('deleted')
+    })
+})
 
 const port = 3063;
 massive(process.env.connectionString).then(db => {

@@ -1,1 +1,42 @@
 import React, { Component } from 'react';
+import {Icon} from 'antd';
+import './SongList.css';
+
+
+class SongListTable extends Component {
+    constructor() {
+        super()
+        this.state = {
+
+        }
+
+    }
+  
+
+    render() {
+        const songRows = this.props.titles.map((song, indexPoint) => {
+            return(
+                <tr key={indexPoint}>
+                <td><button onClick={() => this.props.deleteSong(song.id)}><Icon type="delete"/></button></td>
+                <td>{song.artist}</td>
+                <td>{song.title}</td>
+                </tr>
+            )
+        })
+        return(
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Delete</th>
+                        <th>Artist</th>
+                        <th>Title</th>
+                    </tr>
+                    {songRows}
+                </tbody>
+            </table>
+
+        )
+    }
+}
+
+export default SongListTable;
