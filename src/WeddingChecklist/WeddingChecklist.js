@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Divider } from 'antd';
 import ChecklistTable from './ChecklistTable.js';
 import './WeddingChecklist.css';
 import Axios from 'axios';
@@ -87,7 +86,7 @@ class WeddingChecklist extends Component {
             />
             <button onClick={e => this.addListItems(e)} className="submit" type="submit">Submit</button>
           
-            <Divider />
+          
             <ChecklistTable
             onDelete={this.onDelete} 
             item={this.state.items}

@@ -10,9 +10,9 @@ export default (
     <Switch>
         
 <Route exact path='/' component={WeddingChecklist} />
-<Route path='/Song List' component={SongList} />
-<Route path='/Guest List' component={GuestList} />
-<Route path='DIY Ideas' component={DIYIdeas} />
+<Route path='/SongList' component={SongList} />
+<Route path='/GuestList' component={GuestList} />
+<Route path='DIYIdeas' component={DIYIdeas} />
 
     </Switch>
    

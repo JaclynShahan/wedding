@@ -3,80 +3,14 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const massive = require('massive');
 const axios = require('axios');
-// const r = require('rethinkdb');
+
 require('dotenv').config()
 
 app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// let connection
-// r.connect(
-//   {
-//     host: `${process.env.serverip}`,
-//     port: `${process.env.rethinkdbport}`,
-//     db: 'jaclyn',
-//     user: `${process.env.rethinkdbuser}`,
-//     password: `${process.env.rethinkdbpw}`
-//   },
-//   function (err, conn) {
-//     if (err) console.log('error in connection: ', err)
-//     console.log(`here is conn: ${conn}`)
-//     connection = conn
-//     app.set('reThinkDB', conn)
-//   }
-// )
 
-// setTimeout(() => {
-//   console.log('Connected to rethinkdb server: ', connection.host)
-// }, 3000)
-
-// getItems = res => {
-//     r.table('items').run(connection, (err, cursor) => {
-//       if (err) console.log(err)
-//       cursor.toArray((err, data) => {
-//         res.status(200).send(data)
-//       })
-//     })
-//   }
-
-//   let items = []
-//   app.get('/api/test', (req, res) => {
-//     res.status(200).send({ message: 'It works' })
-//   })
-//   app.get(`/api/getItems`, (req, res) => {
-//     getItems(res)
-//   })
-
-//   app.get('/api/itemSearch', (req, res) => {
-//     console.log(req.query)
-//     items.map(item => {
-//       return item
-//     })
-//   })
-
-
-
-//   app.post('/api/addItems', (req, res) => {
-//     console.log(req.body)
-//     r.table('items')
-//       .insert(req.body.item)
-//       .run(connection, (err, data) => {
-//         console.log(data)
-//         getItems(res)
-//       })
-//   })
-
-//   app.delete('/api/deleteItems/:id', (req, res) => {
-//     console.log(req.params)
-//     r.table('items')
-//       .get(req.params.id)
-//       .delete()
-//       .run(connection, (err, data) => {
-//         console.log(data)
-//         getItems(res)
-//       })
-//   })
 
 app.get('/api/getItem', (req, res) => {
     const dbInstance = req.app.get('db')
@@ -88,6 +22,32 @@ app.get('/api/getItem', (req, res) => {
     .catch((err) => {
         console.log(err)
     })
+})
+app.get('/api/getSong', (req, res) => {
+    const dbInstance = req.app.get('db')
+    dbInstance.getSong(req.query.artist, req.query.title)
+    .then((resp) => {
+        console.log(resp)
+        res.status(200).send(resp)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+app.post('api/createSong', (req, res) => {
+    const dbInstance = req.app.get('db')
+    dbInstance.createSong(req.body.artist, req.body.title).then((resp) => {
+        console.log(resp)
+        console(req.body)
+        res.status(200).send(resp)
+
+    })
+    .catch((err) => {
+        console.log(err)
+   
+})
+
 })
 
 app.post('/api/createItem', (req, res) => {
