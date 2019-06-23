@@ -3,6 +3,7 @@ import {Icon} from 'antd';
 import './SongList.css';
 
 
+
 class SongListTable extends Component {
     constructor() {
         super()
@@ -24,10 +25,10 @@ class SongListTable extends Component {
             )
         })
         return(
-            <table>
+            <table className="songTable">
                 <tbody>
                     <tr>
-                        <th>Delete</th>
+                        <th className="deleteRow">Delete</th>
                         <th>Artist</th>
                         <th>Title</th>
                     </tr>

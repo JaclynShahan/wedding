@@ -13,3 +13,27 @@
     width: 80px;
     border-radius: 10px;
 }
+.songTable {
+    table-layout: fixed;
+    width: 95%;
+    position: fixed;
+    border: 2px inset rgb(34, 34, 59);
+}
+
+.songTable td {
+    text-overflow: ellipsis;
+    border: 1px solid  rgb(34, 34, 59);
+}
+
+.songTable th {
+    text-align: left;
+    padding: 5px 10px;
+    border-spacing: 5px;
+    background-color: lightblue;
+    color: black;
+    border: 2px inset rgb(34, 34, 59);
+}
+
+.deleteRow {
+    width: 15%;
+}
