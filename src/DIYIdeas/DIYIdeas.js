@@ -23,6 +23,8 @@ class DIYIdeas extends Component {
                 <a href="https://catchingcolorflies.com/blog/hanging-paper-wisteria-tutorial-templates/" target="_blank">Hanging Paper Wisterias</a>
                 <br></br>
                 <a href="http://www.100layercake.com/blog/2011/07/22/diy-storybook-paper-roses/" target="_blank">Paper Flower Tutorial</a>
+                <br></br>
+                <a href="https://www.amazon.com/Navy-Blue-Paper-Wedding-Bouquet/dp/B07169NPWX" target="_blank">Wedding Bouquet</a>
             </form>
             </div>
         )
