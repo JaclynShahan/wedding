@@ -15,7 +15,6 @@ class SongList extends Component {
         }
     }
     componentDidMount = () => {
-       
         Axios.get(`/api/getSong`).then(resp => {
           console.log(resp)
         this.setState({ songs: resp.data })
