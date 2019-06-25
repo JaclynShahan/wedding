@@ -1,4 +1,9 @@
 .formColor {
-    background-color: green;
+    background-color:lightblue;
     position: fixed;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
 }

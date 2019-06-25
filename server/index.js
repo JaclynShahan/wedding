@@ -35,7 +35,7 @@ app.get('/api/getSong', (req, res) => {
     })
 })
 
-app.post('api/createSong', (req, res) => {
+app.post('/api/createSong', (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.createSong(req.body.artist, req.body.title).then((resp) => {
         console.log(resp)
