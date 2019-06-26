@@ -35,6 +35,18 @@ app.get('/api/getSong', (req, res) => {
     })
 })
 
+app.get('/api/getGuest', (req, res) => {
+    const dbInstance = req.app.get('db')
+    dbInstance.getGuest(req.query.name, req.query.address, req.query.email)
+    .then((resp) => {
+        console.log(resp)
+        res.status(200).send(resp)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
 app.post('/api/createSong', (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.createSong(req.body.artist, req.body.title).then((resp) => {
@@ -62,6 +74,18 @@ app.post('/api/createItem', (req, res) => {
     })
 })
 
+app.post('/api/createGuest', (req, res) => {
+    const dbInstance = req.app.get('db')
+    dbInstance.createGuest(req.body.name, req.body.address, req.body.email).then((resp) => {
+        console.log(resp)
+        console.log(req.body)
+        res.status(200).send(resp)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
 app.delete('/api/deleteItem/:id', (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.deleteItem(req.params.id).then(() => {
@@ -72,6 +96,14 @@ app.delete('/api/deleteItem/:id', (req, res) => {
 app.delete('/api/deleteSong/:id', (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.deleteSong(req.params.id).then(() => {
+        console.log('deleted')
+        res.status(200).send('deleted')
+    })
+})
+
+app.delete('/api/deleteGuest/:id', (req, res) => {
+    const dbInstance = req.app.get('db')
+    dbInstance.deleteGuest(req.params.id).then(() => {
         console.log('deleted')
         res.status(200).send('deleted')
     })
