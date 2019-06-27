@@ -1,0 +1,53 @@
+.inputRows {
+    height: 30px;
+    width: 28vw;
+    border-radius: 10px;
+    padding: 5px 5px;
+    margin: 20px 15px;
+}
+
+.submitType {
+    height: 50px;
+    border-radius: 30px;
+    width: 80px;
+    background-color: rgb(56, 119, 139);
+}
+
+@import "~antd/dist/antd.css";
+.submitType:hover {
+    background-color: darkcyan;
+}
+
+.guestTable {
+    table-layout: fixed;
+    width: 95%;
+    position: fixed;
+    border: 2px inset rgb(5, 32, 63);
+    background-color: lightsteelblue;
+}
+
+.guestTable th {
+    text-align: left;
+    padding: 5px 10px;
+    border-spacing: 5px;
+    background-color: rgb(56, 119, 139);
+    color: black;
+    border: 2px inset rgb(6, 53, 155);
+    height: 15px;
+}
+
+.guestTable td {
+    text-overflow: ellipsis;
+    border: 1px solid  rgb(6, 53, 155);
+}
+
+.sideRowsOne {
+    width: 5%;
+    padding-left: 15px;
+    color: rgb(56, 119, 139);
+}
+
+.sideRowsTwo {
+    width: 7%;
+    color: rgb(56, 119, 139);
+}

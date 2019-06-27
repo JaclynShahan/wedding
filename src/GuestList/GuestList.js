@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Axios from 'axios';
-import { InputNumber } from 'antd';
+import GuestListTable from './GuestListTable.js';
 
 class GuestList extends Component {
     constructor() {
@@ -30,6 +30,12 @@ class GuestList extends Component {
             this.setState({guests: resp.data})
         })
     }
+    deleteGuest = i => {
+        Axios.delete(`/api/deleteGuest/${i}`).then(resp => {
+            console.log(resp)
+            this.setState({guests: resp.data})
+        })
+    }
     clearAll = () => {
         this.setState({
             name: '',
@@ -47,9 +53,7 @@ class GuestList extends Component {
     updateEmail(email) {
         this.setState({email})
     }
-    onChange = (value) => {
-        console.log('changed', value);
-      }
+  
 
     render() {
         console.log(this.props)
@@ -57,24 +61,30 @@ class GuestList extends Component {
         const {name, address, email} = this.state;
         return(
             <div>
-                <form>
+                <form onSubmit={(e) => this.addGuest(e)}>
                     <input 
+                    className="inputRows"
                     placeholder="Name"
                     value={name}
                     onChange={e => this.updateName(e.target.value)}
                     />
                     <input 
+                    className="inputRows"
                     placeholder="Address"
                     value={address}
                     onChange={e => this.updateAddress(e.target.value)}
                     />
                     <input 
+                    className="inputRows"
                     placeholder="Email"
                     value={email}
                     onChange={e => this.updateEmail(e.target.value)}
                     />
-                    <InputNumber min={1} max={10} defaultValue={1} onChange={this.onChange} />
-
+                    <button className="submitType" onClick={(e) => this.addGuest(e)}>Submit</button>
+                <GuestListTable 
+                onDelete={this.deleteGuest}
+                invites={this.state.guests}
+                />
                 </form>
 
             </div>
