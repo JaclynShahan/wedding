@@ -1,0 +1,1 @@
+DELETE FROM guestlist WHERE guest_id = $1
