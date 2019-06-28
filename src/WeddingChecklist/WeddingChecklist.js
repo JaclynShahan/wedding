@@ -84,12 +84,13 @@ class WeddingChecklist extends Component {
             onChange={e => this.updateNotes(e.target.value)}
             placeholder="Notes"
             />
-            <button onClick={e => this.addListItems(e)} className="submit" type="submit">Submit</button>
+            <button className="submit" type="submit">Submit</button>
           
           
             <ChecklistTable
             onDelete={this.onDelete} 
             item={this.state.items}
+          
             />
             </form>
             </div>

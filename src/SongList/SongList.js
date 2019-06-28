@@ -43,10 +43,11 @@ class SongList extends Component {
      updateTitle (title) {
          this.setState({title})
      }
-     deleteSong = i => {
+     onSongDelete = i => {
         Axios.delete(`/api/deleteSong/${i}`).then(resp => {
             console.log(resp)
             this.setState({ songs: resp.data })
+            
           })
      }
     
@@ -72,7 +73,7 @@ class SongList extends Component {
                     <button className="enterButton" onClick={e => this.addSong(e)}>Submit</button>
 
                     <SongListTable 
-                    onDelete={this.deleteSong}
+                    onSongDelete={this.onSongDelete}
                     titles={this.state.songs}
                     
                     />

@@ -19,7 +19,7 @@ class GuestListTable extends Component {
         const guestRows = this.props.invites.map((guest, indexPoint) => {
            return(
             <tr key={indexPoint}>
-        <td className="sideRowsOne"><button><Icon type='delete'/></button></td>
+        <td className="sideRowsOne"><button onClick={() => this.props.deleteGuest(guest.id)}><Icon type='delete'/></button></td>
             <td>{guest.name}</td>
             <td>{guest.address}</td>
             <td>{guest.email}</td>

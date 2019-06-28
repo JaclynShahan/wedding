@@ -51,8 +51,10 @@ app.post('/api/createSong', (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.createSong(req.body.artist, req.body.title).then((resp) => {
         console.log(resp)
-        console(req.body)
-        res.status(200).send(resp)
+        //console(req.body)
+      dbInstance.getSong(req.query.artist, req.query.title).then((resp) => {
+          res.status(200).send(resp)
+      })
 
     })
     .catch((err) => {
@@ -67,7 +69,10 @@ app.post('/api/createItem', (req, res) => {
     dbInstance.createItem(req.body.checklist_item, req.body.cost, req.body.notes).then((resp) => {
         console.log(resp)
         console.log(req.body)
-        res.status(200).send(resp)
+        dbInstance.getItem(req.query.checklist_item, req.query.cost, req.query.notes).then((resp) => {
+            res.status(200).send(resp)
+        })
+       
     })
     .catch((err) => {
         console.log(err)
@@ -79,7 +84,9 @@ app.post('/api/createGuest', (req, res) => {
     dbInstance.createGuest(req.body.name, req.body.address, req.body.email).then((resp) => {
         console.log(resp)
         console.log(req.body)
-        res.status(200).send(resp)
+        dbInstance.getGuest(req.query.name, req.query.address, req.query.email).then((resp) => {
+           res.status(200).send(resp)
+        })
     })
     .catch((err) => {
         console.log(err)
@@ -90,14 +97,24 @@ app.delete('/api/deleteItem/:id', (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.deleteItem(req.params.id).then(() => {
         console.log('deleted')
-        res.status(200).send('deleted')
+      dbInstance.getItem(req.query.checklist_item, req.query.cost, req.query.notes).then((resp) => {
+          res.status(200).send(resp)
+      })
+    })
+    .catch((err) => {
+        console.log(err)
     })
 })
 app.delete('/api/deleteSong/:id', (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.deleteSong(req.params.id).then(() => {
         console.log('deleted')
-        res.status(200).send('deleted')
+       dbInstance.getSong(req.query.artist, req.query.title).then((resp) => {
+           res.status(200).send(resp)
+       })
+    })
+    .catch((err) => {
+        console.log(err)
     })
 })
 
@@ -105,7 +122,12 @@ app.delete('/api/deleteGuest/:id', (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.deleteGuest(req.params.id).then(() => {
         console.log('deleted')
-        res.status(200).send('deleted')
+      dbInstance.getGuest(req.query.name, req.query.address, req.query.email).then((resp) => {
+          res.status(200).send(resp)
+      })
+    })
+    .catch((err) => {
+        console.log(err)
     })
 })
 

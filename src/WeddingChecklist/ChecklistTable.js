@@ -18,7 +18,7 @@ class ChecklistTable extends Component {
         const tableRows = this.props.item.map((listitem, indexPoint) => {
             return (
             <tr key={indexPoint}>
-           <td><button onClick={() => this.props.onDelete(listitem.item_id)}><Icon type="delete" /></button></td>
+           <td><button onClick={() => this.props.onDelete(listitem.id)}><Icon type="delete" /></button></td>
             <td>{listitem.checklist_item}</td>
             <td>{listitem.cost}</td>
             <td>{listitem.notes}</td>
