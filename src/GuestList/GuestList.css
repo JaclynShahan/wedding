@@ -24,6 +24,7 @@
     position: fixed;
     border: 2px inset rgb(5, 32, 63);
     background-color: lightsteelblue;
+    overflow: scroll;
 }
 
 .guestTable th {
@@ -36,7 +37,7 @@
 }
 
 .guestTable td {
-    text-overflow: ellipsis;
+    text-overflow: scroll;
     border: 1px solid  rgb(6, 53, 155);
 }
 
@@ -49,4 +50,8 @@
 .sideRowsTwo {
     width: 7%;
     color: rgb(56, 119, 139);
+}
+
+.mainTable {
+    overflow: scroll;
 }
