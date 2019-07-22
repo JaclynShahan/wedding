@@ -82,6 +82,7 @@ class GuestList extends Component {
                     />
                     <button className="submitType" onClick={(e) => this.addGuest(e)}>Submit</button>
                 <GuestListTable 
+                
                 onDelete={this.deleteGuest}
                 invites={this.state.guests}
                 />

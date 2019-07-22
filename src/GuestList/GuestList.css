@@ -20,11 +20,14 @@
 
 .guestTable {
     table-layout: fixed;
-    width: 95%;
-    position: fixed;
+    width: 97%;
+    
     border: 2px inset rgb(5, 32, 63);
     background-color: lightsteelblue;
-    overflow: scroll;
+    overflow-y: auto;
+    z-index: 5;
+    height: 15px;
+    
 }
 
 .guestTable th {
@@ -54,4 +57,8 @@
 
 .mainTable {
     overflow: scroll;
+}
+
+.overflowInfo {
+    overflow-y: scroll;
 }
