@@ -23,7 +23,7 @@ class App extends Component {
       <Link to='/SongList'>Song List</Link>
       <Link to='/GuestList'>Guest List</Link>
       <Link to='/DIYIdeas'>DIY Ideas</Link>
-    
+      <Link to='/Notes'>Notes</Link>
     </div>
     {router}
     </div>

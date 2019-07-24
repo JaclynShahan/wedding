@@ -21,7 +21,7 @@
 .guestTable {
     table-layout: fixed;
     width: 97%;
-    
+    margin-left: 20px;
     border: 2px inset rgb(5, 32, 63);
     background-color: lightsteelblue;
     overflow-y: auto;
