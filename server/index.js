@@ -47,6 +47,18 @@ app.get('/api/getGuest', (req, res) => {
     })
 })
 
+app.get('/api/getNote', (req, res) => {
+    const dbInstance = req.app.get('db')
+    dbInstance.getNote(req.query.note)
+    .then((resp) => {
+        console.log(resp)
+        res.status(200).send(resp)
+    })
+})
+//.catch((err) => {
+  //  console.log(err)
+//})
+
 app.post('/api/createSong', (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.createSong(req.body.artist, req.body.title).then((resp) => {
@@ -92,6 +104,18 @@ app.post('/api/createGuest', (req, res) => {
         console.log(err)
     })
 })
+app.post('/api/createNote', (req, res) => {
+    const dbInstance = req.app.get('db')
+    dbInstance.createNote(req.body.note)
+   // console.log(resp)
+    console.log(req.body)
+    dbInstance.getNote(req.query.note).then((resp) => {
+        res.status(200).send(resp)
+    })  
+})
+//.catch((err) => {
+  // console.log(err)
+//})
 
 app.delete('/api/deleteItem/:id', (req, res) => {
     const dbInstance = req.app.get('db')
@@ -130,6 +154,7 @@ app.delete('/api/deleteGuest/:id', (req, res) => {
         console.log(err)
     })
 })
+
 
 const port = 3063;
 massive(process.env.connectionString).then(db => {

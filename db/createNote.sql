@@ -1,0 +1,3 @@
+INSERT INTO notes ("note")
+VALUES ($1)
+RETURNING *

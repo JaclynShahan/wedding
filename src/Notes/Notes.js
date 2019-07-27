@@ -21,7 +21,7 @@ class Notes extends Component {
 
     pendingNote = e => {
         e.preventDefault()
-        Axios.post(`/api/postNote`, {
+        Axios.post(`/api/createNote`, {
            note: this.state.note 
         }).then(resp => {
            this.onClear()
@@ -35,6 +35,11 @@ class Notes extends Component {
             note: ''
         })
     }
+    handleNoteChange = e => {
+        this.setState({
+            note: e.target.value
+        })
+    }
 
     updateNote = (note) => {
         this.setState({note})
@@ -42,16 +47,17 @@ class Notes extends Component {
     render() {
         return(
             <div>
-                <form>
+                <form onSubmit={e => this.pendingNote(e)}>
            <input 
-                value={this.state.pendingNote}
+                onChange={e => this.updateNote(e.target.value)}
+                value={this.state.note}
                 type="text"
                 placeholder="What I Need To Do..."
                 />
              <button type="submit"><Icon className="addIcon" type="plus"/></button>
               </form>
                 <div className="noteForm">
-                {this.state.pendingNote}
+                {this.state.notesArr}
                 </div>
 
             </div>
