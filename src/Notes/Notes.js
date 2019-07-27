@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Icon } from 'antd';
 import './Notes.css';
 import Axios from 'axios';
+import NotesForm from './NotesForm.js';
 
 class Notes extends Component {
     constructor() {
@@ -57,7 +58,9 @@ class Notes extends Component {
              <button type="submit"><Icon className="addIcon" type="plus"/></button>
               </form>
                 <div className="noteForm">
-                {this.state.notesArr}
+                <NotesForm 
+                newNote={this.state.notesArr}
+                />
                 </div>
 
             </div>
