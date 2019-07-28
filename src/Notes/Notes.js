@@ -50,6 +50,7 @@ class Notes extends Component {
             <div>
                 <form onSubmit={e => this.pendingNote(e)}>
            <input 
+                className="inputField"
                 onChange={e => this.updateNote(e.target.value)}
                 value={this.state.note}
                 type="text"

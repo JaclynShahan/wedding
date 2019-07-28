@@ -106,16 +106,17 @@ app.post('/api/createGuest', (req, res) => {
 })
 app.post('/api/createNote', (req, res) => {
     const dbInstance = req.app.get('db')
-    dbInstance.createNote(req.body.note)
-   // console.log(resp)
-    console.log(req.body)
-    dbInstance.getNote(req.query.note).then((resp) => {
-        res.status(200).send(resp)
-    })  
+    dbInstance.createNote(req.body.note).then((resp) => {
+        console.log(req.body)
+        dbInstance.getNote(req.query.note).then((resp) => {
+            res.status(200).send(resp)
+        }) 
+    })
+    .catch((err) => {
+        console.log(err)})
+ 
 })
-//.catch((err) => {
-  // console.log(err)
-//})
+
 
 app.delete('/api/deleteItem/:id', (req, res) => {
     const dbInstance = req.app.get('db')
