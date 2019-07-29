@@ -48,7 +48,7 @@ class Notes extends Component {
     render() {
         return(
             <div>
-                <form onSubmit={e => this.pendingNote(e)}>
+                <form className="formFit" onSubmit={e => this.pendingNote(e)}>
            <input 
                 className="inputField"
                 onChange={e => this.updateNote(e.target.value)}
@@ -56,7 +56,7 @@ class Notes extends Component {
                 type="text"
                 placeholder="What I Need To Do..."
                 />
-             <button type="submit"><Icon className="addIcon" type="plus"/></button>
+            <Icon onClick={e => this.pendingNote(e)}className="addIcon" type="plus"/>
               </form>
                 <div className="noteForm">
                 <NotesForm 
