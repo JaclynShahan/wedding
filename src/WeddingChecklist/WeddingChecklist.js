@@ -20,13 +20,13 @@ class WeddingChecklist extends Component {
          this.setState({ items: resp.data })
         })
       }
+   
       onDelete = i => {
         Axios.delete(`/api/deleteItem/${i}`).then(resp => {
           console.log(resp)
           this.setState({ items: resp.data })
         })
       }
-
       addListItems = e => {
         e.preventDefault()
         Axios.post('/api/createItem', {

@@ -118,12 +118,12 @@ app.post('/api/createNote', (req, res) => {
 })
 
 
-app.delete('/api/deleteItem/:id', (req, res) => {
+app.delete(`/api/deleteItem/:id`, (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.deleteItem(req.params.id).then(() => {
         console.log('deleted')
       dbInstance.getItem(req.query.checklist_item, req.query.cost, req.query.notes).then((resp) => {
-          res.status(200).send(resp)
+        res.status(200).send(resp)
       })
     })
     .catch((err) => {
@@ -156,6 +156,18 @@ app.delete('/api/deleteGuest/:id', (req, res) => {
     })
 })
 
+app.delete('/api/deleteNote/:id', (req, res) => {
+    const dbInstance = req.app.get('db')
+    dbInstance.deleteNote(req.params.id).then(() => {
+        console.log('deleted')
+        dbInstance.getNote(req.query.note).then((resp) => {
+            res.status(200).send(resp)
+        })
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
 
 const port = 3063;
 massive(process.env.connectionString).then(db => {

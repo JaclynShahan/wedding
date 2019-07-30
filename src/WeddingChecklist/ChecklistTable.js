@@ -3,6 +3,7 @@ import {Checkbox, Icon, Popconfirm} from 'antd';
 import './WeddingChecklist.css';
 
 
+
 class ChecklistTable extends Component {
     constructor() {
         super()
@@ -10,7 +11,7 @@ class ChecklistTable extends Component {
 
         }
     }
-
+  
  onChange = e => {
     console.log(`checked = ${e.target.checked}`);
   }
