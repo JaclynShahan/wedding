@@ -13,13 +13,18 @@ class NotesForm extends Component {
         const showNotes = this.props.newNote.map((pendNote, indexPoint) => {
             return(
               <form key={indexPoint}>
+              
                 <span>{pendNote.note}</span>
+                
               </form>
             )
         })
         return(
             <div>
+                <form className="noteform">
                 {showNotes}
+                </form>
+              
             </div>
         )
     }

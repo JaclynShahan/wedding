@@ -3,6 +3,7 @@ import { Icon } from 'antd';
 import './Notes.css';
 import Axios from 'axios';
 import NotesForm from './NotesForm.js';
+import ReactStickies from 'react-stickies';
 
 class Notes extends Component {
     constructor() {
@@ -36,9 +37,9 @@ class Notes extends Component {
             note: ''
         })
     }
-    handleNoteChange = e => {
+    onChange = e => {
         this.setState({
-            note: e.target.value
+            notesArr: e.target.value
         })
     }
 
@@ -46,8 +47,10 @@ class Notes extends Component {
         this.setState({note})
     }
     render() {
+        
         return(
             <div>
+                <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/draft-js/0.7.0/Draft.min.css"></link>
                 <form className="formFit" onSubmit={e => this.pendingNote(e)}>
            <input 
                 className="inputField"
@@ -58,11 +61,12 @@ class Notes extends Component {
                 />
             <Icon onClick={e => this.pendingNote(e)}className="addIcon" type="plus"/>
               </form>
-                <div className="noteForm">
-                <NotesForm 
-                newNote={this.state.notesArr}
+                <ReactStickies 
+                notesArr={this.state.notesArr}
+                onChange={this.onChange}
+            
                 />
-                </div>
+              
 
             </div>
         )
