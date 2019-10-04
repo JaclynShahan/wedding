@@ -39,3 +39,10 @@ h1 {
 .formFit {
     margin-top: 20px;
 }
+
+.noteOutline {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 60px;
+
+}
