@@ -30,8 +30,8 @@ class Notes extends Component {
         return (
           <div>
             <form onSubmit={this.onSubmit}>
-              <input value={this.state.term} onChange={this.onChange} />
-              <button>Submit</button>
+              <input className="inputLine"value={this.state.term} onChange={this.onChange} />
+              <button className="submitButton">Submit</button>
             </form>
             <NotesForm items={this.state.items} />
           </div>

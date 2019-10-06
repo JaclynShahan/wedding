@@ -13,7 +13,7 @@ class NotesForm extends Component {
     render() {
 
         return(
-            <ul>
+            <ul className="notesList">
             {
               this.props.items.map((item, index) => <li key={index}>{item}</li>)
             }
