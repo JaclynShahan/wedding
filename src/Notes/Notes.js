@@ -25,6 +25,16 @@ class Notes extends Component {
           items: [...this.state.items, this.state.term]
         });
       }
+      // removeNote = (noteIndex) => {
+      //   term.splice(noteIndex, 1);
+      //   this.setState({
+      //     term: term
+      //   })
+      // }
+
+      removeNote = i => {
+        
+      }
     
       render() {
         return (
@@ -33,7 +43,9 @@ class Notes extends Component {
               <input className="inputLine"value={this.state.term} onChange={this.onChange} />
               <button className="submitButton">Submit</button>
             </form>
-            <NotesForm items={this.state.items} />
+            <NotesForm 
+          //  removeNote={this.removeNote}
+            items={this.state.items} />
           </div>
         );
       }

@@ -15,8 +15,13 @@ class NotesForm extends Component {
         return(
             <ul className="notesList">
             {
-              this.props.items.map((item, index) => <li key={index}>{item}</li>)
-            }
+              this.props.items.map((item, index) =>
+               <li key={index}>{item}</li>)
+              
+              
+            
+              }
+       
           </ul>
     
         )

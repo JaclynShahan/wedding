@@ -43,8 +43,8 @@ class SongList extends Component {
      updateTitle (title) {
          this.setState({title})
      }
-     onSongDelete = i => {
-        Axios.delete(`/api/deleteSong/${i}`).then(resp => {
+     onSongDelete = id => {
+        Axios.delete(`/api/deleteSong/${id}`).then(resp => {
             console.log(resp)
             this.setState({ songs: resp.data })
             
