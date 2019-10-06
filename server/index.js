@@ -25,7 +25,7 @@ app.get('/api/getItem', (req, res) => {
 })
 app.get('/api/getSong', (req, res) => {
     const dbInstance = req.app.get('db')
-    dbInstance.getSong(req.query.artist, req.query.title)
+    dbInstance.getSong()
     .then((resp) => {
         console.log(resp)
         res.status(200).send(resp)
@@ -64,7 +64,7 @@ app.post('/api/createSong', (req, res) => {
     dbInstance.createSong(req.body.artist, req.body.title).then((resp) => {
         console.log(resp)
         //console(req.body)
-      dbInstance.getSong(req.query.artist, req.query.title).then((resp) => {
+      dbInstance.getSong().then((resp) => {
           res.status(200).send(resp)
       })
 
@@ -133,8 +133,9 @@ app.delete(`/api/deleteItem/:id`, (req, res) => {
 app.delete('/api/deleteSong/:id', (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.deleteSong(req.params.id).then(() => {
-        console.log('deleted')
-       dbInstance.getSong(req.query.artist, req.query.title).then((resp) => {
+        console.log('deleteparams', req.params.id)
+       dbInstance.getSong()
+       .then((resp) => {
            res.status(200).send(resp)
        })
     })
@@ -146,8 +147,9 @@ app.delete('/api/deleteSong/:id', (req, res) => {
 app.delete('/api/deleteGuest/:id', (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.deleteGuest(req.params.id).then(() => {
-        console.log('deleted')
-      dbInstance.getGuest(req.query.name, req.query.address, req.query.email).then((resp) => {
+        console.log('deleted', req.params.id)
+      dbInstance.getGuest()
+      .then((resp) => {
           res.status(200).send(resp)
       })
     })

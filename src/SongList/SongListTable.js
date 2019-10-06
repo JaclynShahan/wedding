@@ -18,7 +18,7 @@ class SongListTable extends Component {
         const songRows = this.props.titles.map((song, indexPoint) => {
             return(
                 <tr key={indexPoint}>
-                <td><button onClick={() => this.props.onSongDelete(song.id)}><Icon type="delete"/></button></td>
+                <td><button onClick={() => this.props.onSongDelete(song.song_id)}><Icon type="delete"/></button></td>
                 <td>{song.artist}</td>
                 <td>{song.title}</td>
                 </tr>

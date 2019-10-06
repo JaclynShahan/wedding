@@ -20,6 +20,7 @@ class SongList extends Component {
         this.setState({ songs: resp.data })
        })
      }
+
      addSong = e => {
         e.preventDefault()
          Axios.post('/api/createSong', {
@@ -31,6 +32,7 @@ class SongList extends Component {
              this.setState({songs: resp.data})
          })
      }
+
      onClear = () => {
          this.setState({
              artist: '',
@@ -45,7 +47,7 @@ class SongList extends Component {
      }
      onSongDelete = id => {
         Axios.delete(`/api/deleteSong/${id}`).then(resp => {
-            console.log(resp)
+            console.log('delresp',resp)
             this.setState({ songs: resp.data })
             
           })
@@ -70,14 +72,14 @@ class SongList extends Component {
                     placeholder="Song Title"
                     onChange={e => this.updateTitle(e.target.value)}
                     />
-                    <button className="enterButton" onClick={e => this.addSong(e)}>Submit</button>
+                    <button className="enterButton" type="submit">Submit</button>
 
+                </form>
                     <SongListTable 
                     onSongDelete={this.onSongDelete}
                     titles={this.state.songs}
                     
                     />
-                </form>
             </div>
             
         )

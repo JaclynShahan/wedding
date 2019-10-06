@@ -32,9 +32,9 @@ class Notes extends Component {
       //   })
       // }
 
-      removeNote = i => {
-        
-      }
+    handleDelete (event) {
+      
+    }
     
       render() {
         return (

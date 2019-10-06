@@ -30,8 +30,8 @@ class GuestList extends Component {
             this.setState({guests: resp.data})
         })
     }
-    deleteGuest = i => {
-        Axios.delete(`/api/deleteGuest/${i}`).then(resp => {
+    deleteGuest = id => {
+        Axios.delete(`/api/deleteGuest/${id}`).then(resp => {
             console.log(resp)
             this.setState({guests: resp.data})
         })
@@ -80,13 +80,13 @@ class GuestList extends Component {
                     value={email}
                     onChange={e => this.updateEmail(e.target.value)}
                     />
-                    <button className="submitType" onClick={(e) => this.addGuest(e)}>Submit</button>
+                    <button className="submitType" type="submit">Submit</button>
+                    </form>
                 <GuestListTable 
-                
                 onDelete={this.deleteGuest}
                 invites={this.state.guests}
                 />
-                </form>
+               
 
             </div>
         )

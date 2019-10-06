@@ -21,8 +21,8 @@ class WeddingChecklist extends Component {
         })
       }
    
-      onDelete = i => {
-        Axios.delete(`/api/deleteItem/${i}`).then(resp => {
+      onDelete = id => {
+        Axios.delete(`/api/deleteItem/${id}`).then(resp => {
           console.log(resp)
           this.setState({ items: resp.data })
         })
@@ -87,12 +87,13 @@ class WeddingChecklist extends Component {
             <button className="submit" type="submit">Submit</button>
           
           
+        
+            </form>
             <ChecklistTable
             onDelete={this.onDelete} 
             item={this.state.items}
           
             />
-            </form>
             </div>
         )
     }
