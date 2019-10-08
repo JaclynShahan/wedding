@@ -49,7 +49,7 @@ app.get('/api/getGuest', (req, res) => {
 
 app.get('/api/getNote', (req, res) => {
     const dbInstance = req.app.get('db')
-    dbInstance.getNote(req.query.note)
+    dbInstance.getNote(req.query.term)
     .then((resp) => {
         console.log(resp)
         res.status(200).send(resp)
@@ -106,9 +106,9 @@ app.post('/api/createGuest', (req, res) => {
 })
 app.post('/api/createNote', (req, res) => {
     const dbInstance = req.app.get('db')
-    dbInstance.createNote(req.body.note).then((resp) => {
+    dbInstance.createNote(req.body.term).then((resp) => {
         console.log(req.body)
-        dbInstance.getNote(req.query.note).then((resp) => {
+        dbInstance.getNote(req.query.term).then((resp) => {
             res.status(200).send(resp)
         }) 
     })
@@ -162,7 +162,7 @@ app.delete('/api/deleteNote/:id', (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.deleteNote(req.params.id).then(() => {
         console.log('deleted')
-        dbInstance.getNote(req.query.note).then((resp) => {
+        dbInstance.getNote().then((resp) => {
             res.status(200).send(resp)
         })
     })

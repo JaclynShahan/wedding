@@ -3,6 +3,7 @@ import { Icon } from 'antd';
 import './Notes.css';
 
 import NotesForm from './NotesForm.js';
+import Axios from 'axios';
 
 
 class Notes extends Component {
@@ -10,42 +11,63 @@ class Notes extends Component {
         super(props);
         this.state = {
           term: '',
-          items: []
+          sticky: []
         };
       }
-    
-      onChange = (event) => {
-        this.setState({ term: event.target.value });
-      }
-    
-      onSubmit = (event) => {
-        event.preventDefault();
-        this.setState({
-          term: '',
-          items: [...this.state.items, this.state.term]
-        });
-      }
-      // removeNote = (noteIndex) => {
-      //   term.splice(noteIndex, 1);
-      //   this.setState({
-      //     term: term
-      //   })
-      // }
-
-    handleDelete (event) {
-      
+    // componentDidMount = () => {
+    //   Axios.get(`/api/getNote`).then(resp => {
+    //     console.log(resp)
+    //     this.setState({sticky: resp.data})
+    //   })
+    // }
+    deleteNote = id => {
+      Axios.delete(`/api/deleteNote/${id}`).then(resp => {
+        console.log(resp)
+        this.setState({sticky: resp.data})
+      })
     }
+   updateTerm (term) {
+     this.setState({term})
+   }
+    addNote = e => {
+      e.preventDefault()
+      Axios.post(`/api/createNote`, {
+          term: this.state.term,
+          sticky: this.state.sticky
+    }).then(resp => {
+      this.onClear()
+      console.log(resp)
+      this.setState({sticky: resp.data})
+    })
+  }
+  onClear = () => {
+    this.setState({
+      term: ""
+    })
+  }
+      // onSubmit = (event) => {
+      //   event.preventDefault();
+      //   this.setState({
+      //     note: '',
+      //     notes: [...this.state.notes, this.state.note]
+      //   });
+      // }
+   
     
       render() {
+        const {term} = this.state
         return (
           <div>
-            <form onSubmit={this.onSubmit}>
-              <input className="inputLine"value={this.state.term} onChange={this.onChange} />
+            <form onSubmit={this.addNote}>
+              <input 
+              className="inputLine"
+              placeholder="Things to Do"
+              value={term} 
+              onChange={e => this.updateTerm(e.target.value)} />
               <button className="submitButton">Submit</button>
             </form>
             <NotesForm 
-          //  removeNote={this.removeNote}
-            items={this.state.items} />
+            sticky={this.state.sticky} />
           </div>
         );
       }
