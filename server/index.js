@@ -104,11 +104,11 @@ app.post('/api/createGuest', (req, res) => {
         console.log(err)
     })
 })
-app.post('/api/createNote', (req, res) => {
+app.post(`/api/createNote`, (req, res) => {
     const dbInstance = req.app.get('db')
     dbInstance.createNote(req.body.term).then((resp) => {
         console.log(req.body)
-        dbInstance.getNote(req.query.term).then((resp) => {
+        dbInstance.getNote().then((resp) => {
             res.status(200).send(resp)
         }) 
     })

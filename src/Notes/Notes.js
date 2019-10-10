@@ -14,12 +14,12 @@ class Notes extends Component {
           sticky: []
         };
       }
-    // componentDidMount = () => {
-    //   Axios.get(`/api/getNote`).then(resp => {
-    //     console.log(resp)
-    //     this.setState({sticky: resp.data})
-    //   })
-    // }
+    componentDidMount = () => {
+      Axios.get(`/api/getNote`).then(resp => {
+        console.log(resp)
+        this.setState({sticky: resp.data})
+      })
+    }
     deleteNote = id => {
       Axios.delete(`/api/deleteNote/${id}`).then(resp => {
         console.log(resp)
@@ -66,8 +66,12 @@ class Notes extends Component {
               onChange={e => this.updateTerm(e.target.value)} />
               <button className="submitButton">Submit</button>
             </form>
+          
             <NotesForm 
-            sticky={this.state.sticky} />
+            stickyNote={this.state.sticky} 
+            deleteNote={this.deleteNote}
+            />
+            
           </div>
         );
       }
