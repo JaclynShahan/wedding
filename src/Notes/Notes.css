@@ -67,20 +67,24 @@ h1 {
     background-color: green;
 }
 
-.notesList {
-    list-style: none;
-  padding-left: 0;
-  width: 250px;
-}
 
-.notesList li {
+.notesList {
     color: #333;
     background-color:yellow;
     padding: 15px;
-    margin-bottom: 15px;
+    margin: 5px;
     border-radius: 5px;
     list-style: none;
-    border: 1px solid black;
+    border: 2px solid black;
     height: 200px;
     width: 200px;
+   
+    
+}
+
+.button {
+    background-color: yellow;
+    border: 1px solid black;
+    border-radius: 20px;
+    float: right;
 }

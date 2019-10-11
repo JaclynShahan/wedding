@@ -19,8 +19,9 @@ class NotesForm extends Component {
             const noteRows = this.props.stickyNote.map((noted, indexPoint) => {
                 return (
                     
-                        <div key={indexPoint} className="notesList">
-                            <form>
+                        <div key={indexPoint}>
+                            <form className="notesList">
+                                <button className="button" onClick={() => this.props.deleteNote(noted.note_id)}>X</button>
                                  {noted.note}
                             </form>
                         </div>
@@ -34,10 +35,10 @@ class NotesForm extends Component {
         
 
         return (
-                <div className="notesList">
+                <div >
 
                     {noteRows}
-                    
+
                 </div>    
                     
 
