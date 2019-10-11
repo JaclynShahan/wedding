@@ -49,7 +49,7 @@ app.get('/api/getGuest', (req, res) => {
 
 app.get('/api/getNote', (req, res) => {
     const dbInstance = req.app.get('db')
-    dbInstance.getNote(req.query.term)
+    dbInstance.getNote(req.query.note)
     .then((resp) => {
         console.log(resp)
         res.status(200).send(resp)
@@ -106,7 +106,7 @@ app.post('/api/createGuest', (req, res) => {
 })
 app.post(`/api/createNote`, (req, res) => {
     const dbInstance = req.app.get('db')
-    dbInstance.createNote(req.body.term).then((resp) => {
+    dbInstance.createNote(req.body.note).then((resp) => {
         console.log(req.body)
         dbInstance.getNote().then((resp) => {
             res.status(200).send(resp)

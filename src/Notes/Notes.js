@@ -7,16 +7,16 @@ import Axios from 'axios';
 
 
 class Notes extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-          term: '',
+          note: '',
           sticky: []
         };
       }
     componentDidMount = () => {
       Axios.get(`/api/getNote`).then(resp => {
-        console.log(resp)
+        console.log("Getting Request", resp)
         this.setState({sticky: resp.data})
       })
     }
@@ -26,14 +26,13 @@ class Notes extends Component {
         this.setState({sticky: resp.data})
       })
     }
-   updateTerm (term) {
-     this.setState({term})
+   updateNote (note) {
+     this.setState({note})
    }
     addNote = e => {
       e.preventDefault()
       Axios.post(`/api/createNote`, {
-          term: this.state.term,
-          sticky: this.state.sticky
+          note: this.state.note,
     }).then(resp => {
       this.onClear()
       console.log(resp)
@@ -42,7 +41,7 @@ class Notes extends Component {
   }
   onClear = () => {
     this.setState({
-      term: ""
+      note: ""
     })
   }
       // onSubmit = (event) => {
@@ -55,15 +54,15 @@ class Notes extends Component {
    
     
       render() {
-        const {term} = this.state
+        const {note} = this.state
         return (
           <div>
             <form onSubmit={this.addNote}>
               <input 
               className="inputLine"
               placeholder="Things to Do"
-              value={term} 
-              onChange={e => this.updateTerm(e.target.value)} />
+              value={note} 
+              onChange={e => this.updateNote(e.target.value)} />
               <button className="submitButton">Submit</button>
             </form>
           

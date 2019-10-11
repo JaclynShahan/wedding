@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Notes.css';
 import { Icon } from 'antd';
+import Notes from './Notes';
 
 class NotesForm extends Component {
     constructor() {
@@ -13,12 +14,14 @@ class NotesForm extends Component {
     render() {
 
 
+       // console.log(noted)
+        console.log(this.props.stickyNote)
             const noteRows = this.props.stickyNote.map((noted, indexPoint) => {
                 return (
                     
                         <div key={indexPoint} className="notesList">
                             <form>
-                                {noted}
+                                 {noted.note}
                             </form>
                         </div>
                     
@@ -31,9 +34,13 @@ class NotesForm extends Component {
         
 
         return (
-            
+                <div className="notesList">
+
                     {noteRows}
-                
+                    
+                </div>    
+                    
+
             
         )
     }
